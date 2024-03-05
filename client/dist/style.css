@@ -4,6 +4,7 @@
     padding: 20px;
     font-family: 'Arial', sans-serif;
     background-color: rgb(212, 211, 211);
+  
   }
   
   button {
@@ -14,4 +15,10 @@
     color: white;
     border: none;
     border-radius: 5px;
+  }
+
+  #inputmail {
+
+ min-width: 40%;
+
   }

@@ -1,5 +1,6 @@
 import React , {useState} from "react";
 import Education from "./Education.jsx";
+import axios from "axios";
 
 
 const PersonalInfo = function () {
@@ -10,16 +11,27 @@ const PersonalInfo = function () {
     const [email,setEmail] = useState ("")
     const [showEducation,setShowEducation] = useState (false)
 
+    const handleNext =() => {
+      if(fullname && mobile && datebir && email){
+        setShowEducation(true)
+
+      }
+      else {
+        alert ("Please fill all the required fields")
+      }
+
+    }
+   
     return (
         
     <div>
 
-<input type ="text" placeholder="fullname" onChange={(e)=>setFullname(e.target.value)}/>
-<input type ="number" placeholder="mobile" onChange={(e)=>setMobile(e.target.value)}/>
-<input type ="date" placeholder="date of birth" onChange={(e)=>setDate(e.target.value)}/>
-<input type ="text" placeholder="email" onChange={(e)=>setEmail(e.target.value)}/>
+<input type ="text" placeholder="fullname"  onChange={(e)=>setFullname(e.target.value)}/>
+<input type ="number" placeholder="mobile"  onChange={(e)=>setMobile(e.target.value)}/>
+<input type ="date" placeholder="date of birth"  onChange={(e)=>setDate(e.target.value)}/>
+<input id ="inputmail" type ="text" placeholder="email"   onChange={(e)=>setEmail(e.target.value)}/>
 
-<button onClick ={()=> setShowEducation(true)}>Next</button>
+<button onClick ={()=> handleNext()}>Next</button>
   {showEducation? <Education/> : null}      
     </div>)
 

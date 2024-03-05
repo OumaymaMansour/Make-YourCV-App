@@ -4,7 +4,7 @@ const cors =  require ("cors")
 // TODO: Update this
 // UNCOMMENT THE DATABASE YOU'D LIKE TO USE
  const {db} = require('./database-mysql');
-const { register ,login,getAll, deleteOneUser} = require("./controllers/item.controller");
+const { register ,login,getAll, deleteOneUser,addToCv,getCv} = require("./controllers/item.controller");
 // const db = require('./database-mongo');
 
 const app = express();
@@ -89,6 +89,37 @@ app.post('/api/login/:username', async (req,res) => {
       res.status(500).send(err)}
     })
 
+
+    app.post('/api/cv/:id', async (req,res) => {
+
+      try {   
+   
+        const info = await addToCv (req.body.fullname,req.body.mobile,req.body.dateofbirth,req.body.email,req.params.id)
+        res.status(200).send(info)
+        
+        }
+        
+        catch (err)
+         {
+          console.log(err)
+          res.status(500).send(err)}
+        })
+
+        app.get('/api/cv/:id', async (req,res) => {
+
+          try {   
+          
+          const cv = await getCv (req.params.id)
+          res.status(200).send(cv[0])
+          
+          }
+          
+          catch (err)
+           {
+            console.log(err)
+            res.status(500).send(err)}
+          })
+ 
 
 app.listen(PORT, function () {
   console.log("listening on port 3000!");

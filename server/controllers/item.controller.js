@@ -49,5 +49,25 @@ catch(err){
  console.log(err)
 }}   
 
+const addToCv =  (fullname,mobile,dateofbirth,email,id) => {
+    
+        return connection.query(`Insert into cv (fullname,mobile,dateofbirth,email,user_id) values (?,?,?,?,?)`, [fullname,mobile,dateofbirth,email,id])
+       
+ 
 
-module.exports = { register ,login,getAll,deleteOneUser};
+}
+
+const getCv = async (id) => {
+
+    try {
+        return connection.query(`Select * from cv where user_id = ${id}`) 
+    }
+    
+    catch(err){
+     console.log(err)
+    }
+    };
+
+
+
+module.exports = { register ,login,getAll,deleteOneUser,addToCv,getCv};

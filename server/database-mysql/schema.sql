@@ -33,6 +33,28 @@ DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
+-- -----------------------------------------------------
+-- Table `mvp`.`cv`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mvp`.`cv` (
+  `idcv` INT NOT NULL AUTO_INCREMENT,
+  `fullname` VARCHAR(45) NOT NULL,
+  `mobile` VARCHAR(45) NOT NULL,
+  `dateofbirth` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`idcv`),
+  UNIQUE INDEX `fullname_UNIQUE` (`fullname` ASC) VISIBLE,
+  UNIQUE INDEX `mobile_UNIQUE` (`mobile` ASC) VISIBLE,
+  INDEX `fk_cv_user_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cv_user`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `mvp`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
