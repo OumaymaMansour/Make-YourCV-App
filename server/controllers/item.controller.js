@@ -49,11 +49,9 @@ catch(err){
  console.log(err)
 }}   
 
-const addToCv =  (fullname,mobile,dateofbirth,email,id) => {
+const addToCv =  (fullname,mobile,dateofbirth,description,email,education,skills,languages,id) => {
     
-        return connection.query(`Insert into cv (fullname,mobile,dateofbirth,email,user_id) values (?,?,?,?,?)`, [fullname,mobile,dateofbirth,email,id])
-       
- 
+        return connection.query(`Insert into cv (fullname,mobile,dateofbirth,description,email,education,skills,languages,user_id) values (?,?,?,?,?,?,?,?,?)`, [fullname,mobile,dateofbirth,description,email,education,skills,languages,id])
 
 }
 

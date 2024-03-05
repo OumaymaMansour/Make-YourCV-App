@@ -3,17 +3,19 @@ import Education from "./Education.jsx";
 import axios from "axios";
 
 
-const PersonalInfo = function () {
+const PersonalInfo = function ({setView}) {
 
     const [fullname,setFullname]= useState ("")
+    const [desc,setDesc]= useState ("")
     const [mobile,setMobile]= useState(0)
     const [datebir,setDate]  = useState(0)
     const [email,setEmail] = useState ("")
-    const [showEducation,setShowEducation] = useState (false)
+    // const [showEducation,setShowEducation] = useState (false)
 
     const handleNext =() => {
-      if(fullname && mobile && datebir && email){
-        setShowEducation(true)
+      if(fullname &&  desc && mobile && datebir && email){
+        // setShowEducation(true)
+        setView ("Education")
 
       }
       else {
@@ -24,15 +26,16 @@ const PersonalInfo = function () {
    
     return (
         
-    <div>
+    <div className= "personalinfo">
 
 <input type ="text" placeholder="fullname"  onChange={(e)=>setFullname(e.target.value)}/>
+<textarea className ="textdesc" rows="10" cols="50"  type ="text" placeholder="Describe yourself" onChange={(e)=>setDesc(e.target.value)}/>
 <input type ="number" placeholder="mobile"  onChange={(e)=>setMobile(e.target.value)}/>
 <input type ="date" placeholder="date of birth"  onChange={(e)=>setDate(e.target.value)}/>
 <input id ="inputmail" type ="text" placeholder="email"   onChange={(e)=>setEmail(e.target.value)}/>
 
 <button onClick ={()=> handleNext()}>Next</button>
-  {showEducation? <Education/> : null}      
+  {/* {showEducation? <Education/> : null}       */}
     </div>)
 
 

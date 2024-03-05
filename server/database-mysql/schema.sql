@@ -40,9 +40,13 @@ CREATE TABLE IF NOT EXISTS `mvp`.`cv` (
   `idcv` INT NOT NULL AUTO_INCREMENT,
   `fullname` VARCHAR(45) NOT NULL,
   `mobile` VARCHAR(45) NOT NULL,
-  `dateofbirth` VARCHAR(45) NOT NULL,
+  `dateofbirth` DATE NOT NULL,
+  `description` LONGTEXT NOT NULL,
   `email` VARCHAR(255) NOT NULL,
   `user_id` INT NOT NULL,
+  `education` LONGTEXT NOT NULL,
+  `skills` LONGTEXT NOT NULL,
+  `languages` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`idcv`),
   UNIQUE INDEX `fullname_UNIQUE` (`fullname` ASC) VISIBLE,
   UNIQUE INDEX `mobile_UNIQUE` (`mobile` ASC) VISIBLE,
@@ -58,6 +62,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 /*  Execute this file from the command line by typing:
  *    mysql -u root -p < server/database-mysql/schema.sql

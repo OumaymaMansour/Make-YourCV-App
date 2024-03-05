@@ -94,7 +94,8 @@ app.post('/api/login/:username', async (req,res) => {
 
       try {   
    
-        const info = await addToCv (req.body.fullname,req.body.mobile,req.body.dateofbirth,req.body.email,req.params.id)
+        const info = await addToCv (req.body.fullname,req.body.mobile,req.body.dateofbirth,req.body.description,req.body.email,req.body.education,req.body.skills,req.body.languages,req.params.id)
+        
         res.status(200).send(info)
         
         }

@@ -19,6 +19,28 @@
 
   #inputmail {
 
- min-width: 40%;
+ min-width: 50%;
 
+  }
+
+  #mailinput {
+
+    min-width: 30%;
+   
+     }
+
+  .personalinfo {
+    max-width: 400px;
+    margin: auto;
+   
+  }
+
+  .textdesc {
+    max-width: 400px;
+  }
+
+  .btnshowusers {
+    margin-bottom: auto;
+    float: right;
+    
   }

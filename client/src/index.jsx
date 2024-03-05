@@ -6,11 +6,16 @@ import axios from "axios"
 import Register from './components/Register.jsx'
 import Login from './components/Login.jsx'
 import PersonalInfo from './components/PersonalInfo.jsx'
+import Education from './components/Education.jsx'
+import Skills from './components/Skills.jsx'
+import Languages from './components/Languages.jsx'
+import Cv from './components/Cv.jsx'
 
 const App = () => {
    const [users, setUsers] = useState([])
 const [view,setView] = useState("start")
 const [refresh,setRefresh] = useState(false)
+const [cvs, setCvs] = useState([])
 
 
 const getAllUsers = async ()=> {
@@ -39,9 +44,21 @@ const register = async (username,password,email)=> {
     catch(err){
       console.log(err)
     }
-
+ 
 }
 
+const getCv = async (id)=> {
+  try{
+    const cv = await axios.get(`http://localhost:3000/api/cv/${id}`)
+      setCvs(cv)
+      setView("onecv")
+     
+    }
+      catch(err){
+        console.log(err)
+      }
+  
+  }
 
 const renderView = () => {
   if (view === "start") {
@@ -54,18 +71,29 @@ const renderView = () => {
     </div>)
   }
   else if (view === "PersonalInfo") {
-    return  <PersonalInfo  /> }
+    return  <PersonalInfo  setView ={setView} /> }
     else if (view === "allusers") {
-      return  <List users={users} />
+      return  <List users={users} />  }
 
-  
+      else if(view === "Education") {
+        return  <Education  setView ={setView}/>
+      } 
+      else if (view === "Skills"){
+        return  <Skills  setView ={setView}/>
+      } 
+      else if (view === "Languages"){
+        return  <Languages  setView ={setView}/>
+      } 
+      else if (view === "onecv") {
+        return  <Cv getCv ={getCv} setView = {setView}  />
+      }
+
 }
-}
+
   return (
     <div className="app-container">
+       <button className ="btnshowusers" onClick={getAllUsers}>Show All Users</button>
       <h1> Make your CV </h1>
-
-      <button onClick={getAllUsers}>Show All Users</button>
 
       {renderView()}
 

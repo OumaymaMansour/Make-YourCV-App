@@ -37,9 +37,7 @@ const Login = function ({setView}) {
   <br></br><br></br>
   
   <button onClick={()=> loginuser()}> Login  </button>
-  {log ? <div> welcome {username} 
-  
- </div> :  <div> plz enter a right information </div>
+  {log ? <div> welcome {username} </div> :  <div> plz enter a right information </div>
   }
 </center>
   </div>
