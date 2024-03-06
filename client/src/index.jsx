@@ -16,6 +16,7 @@ const App = () => {
 const [view,setView] = useState("start")
 const [refresh,setRefresh] = useState(false)
 const [cvs, setCvs] = useState([])
+   const [selected, setselected] = useState({})
 
 
 const getAllUsers = async ()=> {
@@ -50,7 +51,7 @@ const register = async (username,password,email)=> {
 const getCv = async (id)=> {
   try{
     const cv = await axios.get(`http://localhost:3000/api/cv/${id}`)
-      setCvs(cv)
+      setCvs([cv.data])
       setView("onecv")
      
     }
@@ -59,6 +60,8 @@ const getCv = async (id)=> {
       }
   
   }
+
+  
 
 const renderView = () => {
   if (view === "start") {
@@ -71,7 +74,7 @@ const renderView = () => {
     </div>)
   }
   else if (view === "PersonalInfo") {
-    return  <PersonalInfo  setView ={setView} /> }
+    return  <PersonalInfo  setView ={setView} selected={selected} setselected={setselected}/> }
     else if (view === "allusers") {
       return  <List users={users} />  }
 
@@ -85,7 +88,7 @@ const renderView = () => {
         return  <Languages  setView ={setView}/>
       } 
       else if (view === "onecv") {
-        return  <Cv getCv ={getCv} setView = {setView}  />
+        return  <Cv getCv ={getCv} setView = {setView} selected={selected} />
       }
 
 }

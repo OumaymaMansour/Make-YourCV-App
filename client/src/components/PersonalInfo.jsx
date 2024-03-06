@@ -3,7 +3,7 @@ import Education from "./Education.jsx";
 import axios from "axios";
 
 
-const PersonalInfo = function ({setView}) {
+const PersonalInfo = function ({setView,selected,setselected}) {
 
     const [fullname,setFullname]= useState ("")
     const [desc,setDesc]= useState ("")
@@ -14,7 +14,7 @@ const PersonalInfo = function ({setView}) {
 
     const handleNext =() => {
       if(fullname &&  desc && mobile && datebir && email){
-        // setShowEducation(true)
+        setselected({fullname:fullname ,  desc:desc , mobile :mobile , datebir:datebir , email:email,...selected})
         setView ("Education")
 
       }
@@ -34,7 +34,7 @@ const PersonalInfo = function ({setView}) {
 <input type ="date" placeholder="date of birth"  onChange={(e)=>setDate(e.target.value)}/>
 <input id ="inputmail" type ="text" placeholder="email"   onChange={(e)=>setEmail(e.target.value)}/>
 
-<button onClick ={()=> handleNext()}>Next</button>
+<button onClick ={()=> {handleNext()}}>Next</button>
   {/* {showEducation? <Education/> : null}       */}
     </div>)
 

@@ -43,17 +43,35 @@ CREATE TABLE IF NOT EXISTS `mvp`.`cv` (
   `dateofbirth` DATE NOT NULL,
   `description` LONGTEXT NOT NULL,
   `email` VARCHAR(255) NOT NULL,
-  `user_id` INT NOT NULL,
   `education` LONGTEXT NOT NULL,
   `skills` LONGTEXT NOT NULL,
   `languages` VARCHAR(255) NOT NULL,
+  `user_id` INT NOT NULL,
   PRIMARY KEY (`idcv`),
   UNIQUE INDEX `fullname_UNIQUE` (`fullname` ASC) VISIBLE,
   UNIQUE INDEX `mobile_UNIQUE` (`mobile` ASC) VISIBLE,
-  INDEX `fk_cv_user_idx` (`user_id` ASC) VISIBLE,
-  CONSTRAINT `fk_cv_user`
+  INDEX `fk_cv_user1_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_cv_user1`
     FOREIGN KEY (`user_id`)
     REFERENCES `mvp`.`user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `mvp`.`education`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `mvp`.`education` (
+  `ideducation` INT NOT NULL AUTO_INCREMENT,
+  `school` VARCHAR(255) NULL,
+  `diploma` VARCHAR(255) NULL,
+  `cv_idcv` INT NOT NULL,
+  PRIMARY KEY (`ideducation`),
+  INDEX `fk_education_cv1_idx` (`cv_idcv` ASC) VISIBLE,
+  CONSTRAINT `fk_education_cv1`
+    FOREIGN KEY (`cv_idcv`)
+    REFERENCES `mvp`.`cv` (`idcv`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -62,6 +80,7 @@ ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
 
 
 /*  Execute this file from the command line by typing:
